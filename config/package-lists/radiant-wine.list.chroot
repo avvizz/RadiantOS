@@ -1,8 +1,6 @@
 # --- Слой совместимости Windows ---
 wine
 wine64
-wine32:i386
-libwine:i386
 winetricks
 cabextract
 lutris

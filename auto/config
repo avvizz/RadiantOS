@@ -7,13 +7,12 @@ lb config noauto \
     --distribution noble \
     --architectures amd64 \
     --archive-areas "main restricted universe multiverse" \
-    --binary-images iso-hybrid \
-    --bootloaders "grub-efi,syslinux" \
+    --binary-images iso \
+    --bootloader grub2 \
     --iso-application "RadiantOS" \
     --iso-publisher "RadiantOS Project" \
     --iso-volume "RadiantOS" \
     --linux-flavours generic \
     --apt-recommends true \
     --security true \
-    --updates true \
     "${@}"
