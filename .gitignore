@@ -23,3 +23,13 @@ local/
 *.iso
 *.iso.sha256
 build.log
+# Результаты сборки live-build и make-iso
+binary/
+chroot/
+cache/
+.build/
+.iso-stage/
+local/
+*.iso
+*.iso.sha256
+build.log
