@@ -1,0 +1,35 @@
+# --- Live-система ---
+casper
+ubuntu-standard
+network-manager
+network-manager-gnome
+sudo
+nano
+curl
+wget
+git
+unzip
+p7zip-full
+unrar
+software-properties-common
+
+# --- Рабочий стол: Cinnamon (первый, основной) ---
+cinnamon-desktop-environment
+lightdm
+lightdm-gtk-greeter
+nemo
+nemo-fileroller
+gnome-terminal
+firefox
+fonts-noto
+fonts-liberation
+language-pack-ru
+language-pack-gnome-ru
+hunspell-ru
+
+# --- Установщик ---
+calamares
+calamares-settings-ubuntu-common
+
+# --- Флатпак (для Bottles) ---
+flatpak

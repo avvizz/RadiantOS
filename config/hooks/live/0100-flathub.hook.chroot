@@ -1,0 +1,7 @@
+#!/bin/sh
+# Добавляем Flathub и пробуем поставить Bottles.
+# Если сеть/dbus в chroot недоступны, Bottles доставит мастер первого запуска (этап 4).
+set -e
+flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo || true
+flatpak install --system -y --noninteractive flathub com.usebottles.bottles \
+    || echo "WARN: Bottles не установлен в образ, будет поставлен при первом запуске"

@@ -1,0 +1,19 @@
+#!/bin/sh
+# RadiantOS: конфигурация live-build (Ubuntu 24.04 LTS "noble")
+set -e
+
+lb config noauto \
+    --mode ubuntu \
+    --distribution noble \
+    --architectures amd64 \
+    --archive-areas "main restricted universe multiverse" \
+    --binary-images iso-hybrid \
+    --bootloaders "grub-efi,syslinux" \
+    --iso-application "RadiantOS" \
+    --iso-publisher "RadiantOS Project" \
+    --iso-volume "RadiantOS" \
+    --linux-flavours generic \
+    --apt-recommends true \
+    --security true \
+    --updates true \
+    "${@}"

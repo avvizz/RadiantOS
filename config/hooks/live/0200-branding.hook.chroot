@@ -1,0 +1,9 @@
+#!/bin/sh
+# Базовая идентификация системы
+set -e
+cat > /etc/radiantos-release <<EOR
+NAME="RadiantOS"
+VERSION="0.0.1-alpha"
+BASED_ON="Ubuntu 24.04 LTS"
+EOR
+sed -i 's/^PRETTY_NAME=.*/PRETTY_NAME="RadiantOS (Ubuntu 24.04 LTS)"/' /etc/os-release || true

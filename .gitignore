@@ -1,0 +1,14 @@
+# Артефакты сборки
+build/
+*.iso
+*.iso.sha256
+chroot/
+binary/
+cache/
+.build/
+config/binary
+config/bootstrap
+config/chroot
+config/common
+config/source
+*.log
