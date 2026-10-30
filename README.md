@@ -19,7 +19,7 @@
 Нужна Ubuntu 22.04/24.04 (хост, VM или контейнер), ~25 ГБ места и интернет.
 
 ```bash
-git clone https://github.com/<ТВОЙ_НИК>/RadiantOS.git
+git clone https://github.com/avviz/RadiantOS.git
 cd RadiantOS
 sudo ./build.sh
 ```
