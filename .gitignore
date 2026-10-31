@@ -61,3 +61,20 @@ binary.*
 chroot.*
 live-image-*
 *.zsync*
+
+# Результаты сборки live-build и make-iso
+binary/
+chroot/
+cache/
+.build/
+.iso-stage/
+local/
+*.iso
+*.iso.sha256
+build.log
+
+# Служебные файлы live-build
+binary.*
+chroot.*
+live-image-*
+*.zsync*
