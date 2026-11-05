@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=Установить RadiantOS
+Comment=Запустить установщик RadiantOS
+Exec=sudo -E calamares
+Icon=system-software-install
+Terminal=false
+Categories=System;

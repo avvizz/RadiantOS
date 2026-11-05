@@ -1,0 +1,4 @@
+#!/bin/sh
+# Ярлык установщика на рабочем столе live-сессии
+chmod +x /etc/skel/Desktop/radiantos-installer.desktop /usr/lib/radiantos/post-install.sh 2>/dev/null || true
+exit 0

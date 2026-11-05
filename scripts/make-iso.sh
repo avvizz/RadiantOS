@@ -20,10 +20,10 @@ set default=0
 set timeout=5
 
 menuentry "RadiantOS (live)" {
-    linux  /casper/$KERNEL boot=casper
+    linux  /casper/$KERNEL boot=casper quiet splash
     initrd /casper/$INITRD
 }
-menuentry "RadiantOS (безопасный режим)" {
+menuentry "RadiantOS (safe mode)" {
     linux  /casper/$KERNEL boot=casper nomodeset noapic nolapic
     initrd /casper/$INITRD
 }

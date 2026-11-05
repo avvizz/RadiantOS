@@ -1,0 +1,6 @@
+#!/bin/sh
+# Flathub + попытка поставить Bottles (иначе доставит мастер первого запуска)
+flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo || true
+flatpak install --system -y --noninteractive flathub com.usebottles.bottles \
+    || echo "WARN: Bottles не установлен в образ"
+exit 0

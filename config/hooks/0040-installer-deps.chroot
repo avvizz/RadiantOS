@@ -1,0 +1,14 @@
+#!/bin/sh
+# Пакеты, нужные установщику (загрузчик, LUKS, NTFS/dual-boot) и безопасности.
+# Ставим по одному, чтобы один отсутствующий пакет не ломал остальные.
+export DEBIAN_FRONTEND=noninteractive
+echo "grub-pc grub-pc/install_devices_empty boolean true" | debconf-set-selections
+echo "grub-pc grub-pc/install_devices multiselect" | debconf-set-selections
+apt-get update
+for p in grub-pc grub-efi-amd64-signed shim-signed os-prober \
+         cryptsetup cryptsetup-initramfs lvm2 ntfs-3g btrfs-progs dosfstools mtools \
+         gparted ufw timeshift unattended-upgrades \
+         ubuntu-restricted-addons libavcodec-extra; do
+    apt-get install -y "$p" || echo "WARN: пакет $p не установлен"
+done
+exit 0

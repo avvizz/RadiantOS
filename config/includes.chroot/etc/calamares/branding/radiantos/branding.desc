@@ -1,0 +1,24 @@
+---
+componentName: radiantos
+welcomeStyleCalamares: false
+strings:
+  productName: RadiantOS
+  shortProductName: RadiantOS
+  version: 0.0.2-alpha
+  shortVersion: 0.0.2
+  versionedName: RadiantOS 0.0.2-alpha
+  shortVersionedName: RadiantOS 0.0.2
+  bootloaderEntryName: RadiantOS
+  productUrl: https://github.com/avvizz/RadiantOS
+  supportUrl: https://github.com/avvizz/RadiantOS/issues
+  releaseNotesUrl: https://github.com/avvizz/RadiantOS
+images:
+  productLogo: "logo.svg"
+  productIcon: "logo.svg"
+slideshow: "show.qml"
+slideshowAPI: 1
+style:
+  SidebarBackground: "#1b1e2b"
+  SidebarText: "#ffffff"
+  SidebarTextSelect: "#ffcc33"
+  SidebarTextHighlight: "#3a3f5c"

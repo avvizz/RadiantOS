@@ -1,6 +1,7 @@
 #!/bin/sh
 # Включаем i386 и ставим 32-битные части Wine (для старых .exe)
-set -e
+export DEBIAN_FRONTEND=noninteractive
 dpkg --add-architecture i386
 apt-get update
 apt-get install -y wine32:i386 libwine:i386 || echo "WARN: wine32 не установлен"
+exit 0
