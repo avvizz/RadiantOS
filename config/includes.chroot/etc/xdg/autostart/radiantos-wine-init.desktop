@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=RadiantOS: подготовка Wine
+Exec=radiant-wine-init
+X-GNOME-Autostart-Delay=15
+NoDisplay=true

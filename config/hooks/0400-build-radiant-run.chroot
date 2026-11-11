@@ -1,0 +1,26 @@
+#!/bin/sh
+# Собираем Qt-утилиту radiant-run и ставим тему для Qt-программ в GTK-среде.
+export DEBIAN_FRONTEND=noninteractive
+apt-get update
+for p in libqt6widgets6 libnotify-bin qt6-gtk-platformtheme; do
+    apt-get install -y "$p" || echo "WARN: пакет $p не установлен"
+done
+
+apt-get install -y cmake g++ make qt6-base-dev || { echo "WARN: нет инструментов сборки"; exit 0; }
+
+SRC=/usr/src/radiantos/radiant-run
+if [ -d "$SRC" ]; then
+    cmake -S "$SRC" -B /tmp/rr-build -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr \
+        && cmake --build /tmp/rr-build -j2 \
+        && cmake --install /tmp/rr-build \
+        || echo "WARN: radiant-run не собрался"
+    rm -rf /tmp/rr-build
+fi
+
+# Qt-программы подхватывают GTK-тему
+grep -q QT_QPA_PLATFORMTHEME /etc/environment 2>/dev/null || echo "QT_QPA_PLATFORMTHEME=gtk3" >> /etc/environment
+
+# dev-пакеты Qt и cmake в образе не нужны
+apt-get purge -y qt6-base-dev cmake || true
+update-desktop-database /usr/share/applications 2>/dev/null || true
+exit 0

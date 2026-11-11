@@ -1,0 +1,24 @@
+#!/bin/sh
+# Однократная подготовка Wine-префикса при первом входе установленной системы.
+# В live-сессии не запускается.
+grep -q "boot=casper" /proc/cmdline && exit 0
+
+MARK="$HOME/.config/radiantos/wine-init-done"
+[ -f "$MARK" ] && exit 0
+mkdir -p "$(dirname "$MARK")"
+
+notify() { command -v notify-send >/dev/null 2>&1 && notify-send "RadiantOS" "$1"; }
+
+export WINEDEBUG=-all
+# Без окон с предложением скачать mono/gecko: их доставит мастер первого запуска
+export WINEDLLOVERRIDES="mscoree,mshtml="
+
+notify "Готовлю среду для Windows-программ (один раз, несколько минут)..."
+wineboot -u
+wine reg add "HKCU\\Software\\Wine" /v Version /d win10 /f >/dev/null 2>&1
+if command -v winetricks >/dev/null 2>&1; then
+    winetricks -q corefonts || true
+fi
+touch "$MARK"
+notify "Среда Windows-программ готова. Теперь .exe запускаются двойным кликом."
+exit 0

@@ -1,0 +1,8 @@
+[Default Applications]
+application/x-ms-dos-executable=radiantos-run.desktop
+application/vnd.microsoft.portable-executable=radiantos-run.desktop
+application/x-msdownload=radiantos-run.desktop
+application/x-dosexec=radiantos-run.desktop
+application/x-msi=radiantos-run.desktop
+application/x-bat=radiantos-run.desktop
+application/x-msdos-program=radiantos-run.desktop

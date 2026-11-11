@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Запустить программу Windows
+Comment=Запуск .exe, .bat и .msi через Wine
+Exec=radiant-run %f
+Icon=wine
+Terminal=false
+Categories=Utility;
+MimeType=application/x-ms-dos-executable;application/vnd.microsoft.portable-executable;application/x-msdownload;application/x-dosexec;application/x-msi;application/x-bat;application/x-msdos-program;
