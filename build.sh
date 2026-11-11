@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#!/usr/bin/env bash
 # Сборка RadiantOS ISO. Запускать на Ubuntu 22.04/24.04/26.04 (хост, WSL2 или VM).
 set -euo pipefail
 cd "$(dirname "$0")"
@@ -20,7 +21,21 @@ apt-get install -y live-build debootstrap squashfs-tools xorriso \
 echo ">>> Настройка и сборка системы (20-60 минут)"
 lb clean || true
 lb config
-lb build 2>&1 | tee build.log
+# auto/build берет код возврата lb (через tee).
+lb build 2>&1 | tee build.log || true
+
+echo ">>> Диагностика результата"
+ls -la
+du -sh chroot binarty 2>&1 || true
+find . -maxdepth 3 -name 'filesystem.squashfs' -exec ls -lh {} \; 2>&1 || true
+
+if [[ ! -d binary/casper ]]; then
+    echo "Ошибка нет binary/casper , система не собралась. Проверить build.log"
+    exit 1
+fi
+
+SQ="$(stat -c %s binary/casper/filesystem.squashfs)"
+echo ">>> Размер filesystem.squashfs: $((SQ / 1024 / 1024)) МБ"
 
 echo ">>> Упаковка ISO (BIOS + UEFI)"
 ./scripts/make-iso.sh
