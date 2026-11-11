@@ -30,6 +30,7 @@ menuentry "RadiantOS (safe mode)" {
 CFG
 
 rm -f radiantos.iso
-grub-mkrescue -o radiantos.iso "$STAGE"
+grub-mkrescue -o radiantos.iso "$STAGE" -iso-level 3 \
+        || grub-mkrescue -o radiantos.iso "STAGE"
 rm -rf "$STAGE"
 ls -lh radiantos.iso
