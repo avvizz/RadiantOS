@@ -1,6 +1,5 @@
 #!/bin/sh
-# Flathub + попытка поставить Bottles (иначе доставит мастер первого запуска)
+# Подключение Flathub. Bottles (1-2 ГБ с рантаймом) в образ не идет:
+# файл filesystem.squashfs не должен превысить 4 ГБ. Bottles даст мастер первого запуска.
 flatpak remote-add --system --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo || true
-flatpak install --system -y --noninteractive flathub com.usebottles.bottles \
-    || echo "WARN: Bottles не установлен в образ"
 exit 0
