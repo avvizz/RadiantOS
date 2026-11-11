@@ -26,7 +26,7 @@ lb build 2>&1 | tee build.log || true
 
 echo ">>> Диагностика результата"
 ls -la
-du -sh chroot binarty 2>&1 || true
+du -sh chroot binary 2>&1 || true
 find . -maxdepth 3 -name 'filesystem.squashfs' -exec ls -lh {} \; 2>&1 || true
 
 if [[ ! -d binary/casper ]]; then
