@@ -30,7 +30,7 @@ du -sh chroot binarty 2>&1 || true
 find . -maxdepth 3 -name 'filesystem.squashfs' -exec ls -lh {} \; 2>&1 || true
 
 if [[ ! -d binary/casper ]]; then
-    echo "Ошибка нет binary/casper , система не собралась. Проверить build.log"
+    echo "Ошибка: нет binary/casper , система не собралась. Проверить build.log"
     exit 1
 fi
 
