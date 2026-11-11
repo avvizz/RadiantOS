@@ -1,0 +1,7 @@
+#!/bin/sh
+# Уборка перед упааковкой образа
+export DEBIAN_FRONTED=noninteractive
+apt-get purge -y g++ make cmake qt6-base-dev 2>/dev/null || true
+apt-get clean
+rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/* /var/tmp/* 2>/dev/null ||true
+exit 0
