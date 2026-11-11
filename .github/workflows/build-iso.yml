@@ -1,0 +1,56 @@
+name: Сборка ISO
+
+on:
+  workflow_dispatch:        # кнопка "Run workflow" во вкладке Actions
+  push:
+    tags: [ "v*" ]          # и автоматически при теге вида v0.0.3
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+
+    steps:
+      - name: Получить код
+        uses: actions/checkout@v4
+
+      - name: Освободить место на диске (сборке нужно около 25 ГБ)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
+                      /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          sudo docker image prune --all --force || true
+          df -h /
+
+      - name: Собрать образ
+        run: sudo ./build.sh
+
+      - name: Подготовить файлы к загрузке
+        if: success()
+        run: |
+          ISO="$(ls radiantos-*.iso | head -n1)"
+          mkdir -p out
+          sudo sha256sum "$ISO" > "out/$ISO.sha256"
+          # Режем на части по 1900 МБ, чтобы не упереться в лимиты размера файла
+          sudo split -b 1900M -d "$ISO" "out/$ISO.part"
+          sudo chmod -R a+r out
+          ls -lh out
+
+      - name: Загрузить ISO (части)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: radiantos-iso
+          path: out/
+          compression-level: 0
+          retention-days: 7
+
+      - name: Загрузить лог сборки
+        if: always()
+        run: sudo chmod a+r build.log 2>/dev/null || true
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-log
+          path: build.log
+          if-no-files-found: ignore
+          retention-days: 14
